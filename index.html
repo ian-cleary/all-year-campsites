@@ -5,43 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wild Skies — All-Year Rural Campsites within 2 Hours of Harrogate</title>
 <meta name="description" content="Small, picturesque, all-year campsites with proper toilets and showers within ~2 hours of Harrogate. Researched October 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a1220; --card:#141f33; --card2:#182642;
-    --ink:#eef3fa; --muted:#9fb0c8; --faint:#67789300; --faint:#6b7d99;
-    --amber:#f2b544; --amber2:#ffd98a; --green:#8fd694; --sky:#8fc7ff;
-    --moss:#3f6b4f; --line:rgba(255,255,255,.09);
-    --serif:Georgia,'Times New Roman',serif;
+    --bg:#0a1313; --card:#0f1e1e; --card2:#132626;
+    --ink:#e9f0ec; --muted:#9db8b3; --faint:#647873;
+    --mist:#a8c3c9; --teal:#274d4d; --cedar:#d29a5b; --cedar2:#e8b878;
+    --gold:#f2b544; --green:#8fd694;
+    --line:rgba(168,195,201,.13);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
+  body{margin:0;min-height:100vh;color:var(--ink);
+    background:linear-gradient(180deg,#0a1313 0%,#0a1214 55%,#081011 100%);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+  body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
   /* ---------- hero ---------- */
-  .sky{position:relative;overflow:hidden;background:#060b18}
+  .sky{position:relative;overflow:hidden;background:#060d10}
   .sky svg.scene{position:absolute;inset:0;width:100%;height:100%}
-  .hero{position:relative;z-index:2;text-align:center;padding:78px 20px 60px}
-  .hero .kicker{font-size:12px;letter-spacing:.4em;color:var(--amber);text-transform:uppercase;margin-bottom:16px}
-  .hero h1{font-family:var(--serif);font-size:clamp(34px,6vw,62px);margin:0 0 12px;font-weight:700;letter-spacing:-.01em;
-    text-shadow:0 2px 24px rgba(0,0,0,.7)}
-  .hero h1 .wild{color:var(--amber2);font-style:italic}
-  .hero .sub{color:#cdd9ec;max-width:700px;margin:0 auto;font-size:17px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
-  .tw{animation:tw 3.2s ease-in-out infinite}
-  @keyframes tw{0%,100%{opacity:.25}50%{opacity:.95}}
-  .caveat{margin:26px auto 0;max-width:760px;background:rgba(10,18,32,.72);border:1px solid rgba(242,181,68,.4);
-    border-radius:12px;padding:12px 18px;font-size:14px;color:var(--amber2);backdrop-filter:blur(4px)}
+  .fogDrift{animation:fog 26s ease-in-out infinite alternate}
+  @keyframes fog{from{transform:translateX(-46px)}to{transform:translateX(46px)}}
+  .hero{position:relative;z-index:2;text-align:center;padding:86px 20px 66px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--mist);margin-bottom:18px}
+  .hero h1{font-family:var(--serif);font-weight:650;font-size:clamp(36px,6vw,64px);margin:0 0 14px;
+    letter-spacing:-.01em;text-shadow:0 2px 30px rgba(0,0,0,.75)}
+  .hero h1 em{color:var(--cedar2);font-weight:500}
+  .hero .sub{color:#cfdcd8;max-width:700px;margin:0 auto;font-size:17px;text-shadow:0 1px 14px rgba(0,0,0,.85)}
+  .hero .sub b{color:var(--ink)}
+  .stats{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .stats span{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);
+    border:1px solid var(--line);border-radius:999px;padding:7px 16px;background:rgba(8,16,16,.55);backdrop-filter:blur(4px)}
+  .caveat{margin:26px auto 0;max-width:760px;background:rgba(8,16,16,.72);border:1px solid rgba(210,154,91,.4);
+    border-radius:12px;padding:12px 18px;font-size:14px;color:var(--cedar2);backdrop-filter:blur(4px)}
   /* ---------- filters ---------- */
-  .filters{position:sticky;top:0;z-index:5;background:rgba(10,18,32,.94);backdrop-filter:blur(8px);
+  .filters{position:sticky;top:0;z-index:5;background:rgba(8,15,15,.94);backdrop-filter:blur(8px);
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:0 0 8px}
   .filters .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
   .chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;
     padding:7px 15px;font-size:14px;cursor:pointer;transition:all .15s;font-family:inherit}
-  .chip:hover{border-color:var(--amber);color:var(--ink)}
-  .chip.on{background:var(--amber);border-color:var(--amber);color:#1a1405;font-weight:700}
-  .count{margin-left:auto;color:var(--faint);font-size:13px}
-  h2.section{font-family:var(--serif);font-size:26px;margin:40px 0 4px;display:flex;align-items:center;gap:10px}
+  .chip:hover{border-color:var(--mist);color:var(--ink)}
+  .chip.on{background:var(--mist);border-color:var(--mist);color:#0c1515;font-weight:700}
+  .count{margin-left:auto;color:var(--faint);font-size:13px;font-family:var(--mono)}
+  h2.section{font-family:var(--serif);font-weight:650;font-size:27px;margin:42px 0 4px;display:flex;align-items:center;gap:12px}
   h2.section .n{font-size:13px;color:var(--faint);font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-  p.lede{color:var(--muted);margin:0 0 6px;max-width:760px}
+  .secNo{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--faint);
+    border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+  p.lede{color:var(--muted);margin:0 0 6px;max-width:780px}
+  p.lede b{color:var(--ink)}
   /* ---------- poll ---------- */
   #voterBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 4px}
   .vlabel{color:var(--muted);font-size:14px}
@@ -51,102 +66,111 @@
   .lbtabs{display:flex;gap:8px;margin:12px 0 4px}
   #leaderboard{display:grid;gap:8px;margin:12px 0 4px}
   .lbRow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
-  .lbRow.leader{border-color:var(--amber);background:rgba(242,181,68,.07)}
+  .lbRow.leader{border-color:var(--cedar);background:rgba(210,154,91,.07)}
   .lbRank{font-size:18px;min-width:30px;text-align:center}
-  .lbName{font-weight:700}
-  .lbStars{color:var(--amber);letter-spacing:2px;white-space:nowrap}
-  .lbVotes{color:var(--faint);font-size:12.5px}
+  .lbName{font-weight:700;font-family:var(--serif)}
+  .lbStars{color:var(--gold);letter-spacing:2px;white-space:nowrap}
   .lbLoc{margin-left:auto;color:var(--faint);font-size:13px;text-align:right}
   .pollActions{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
   details.how{margin:10px 0 4px;color:var(--muted);font-size:14px;max-width:780px}
-  details.how summary{cursor:pointer;color:var(--sky);font-weight:600}
+  details.how summary{cursor:pointer;color:var(--mist);font-weight:600}
   details.how p{margin:8px 0}
   /* ---------- cards ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:18px}
-  .card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
+  .card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;
     overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
-  .card:hover{transform:translateY(-2px);border-color:rgba(242,181,68,.4)}
+  .card:hover{transform:translateY(-2px);border-color:rgba(168,195,201,.4)}
   .card.hide{display:none}
-  .card.isLeader{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
-  .scene{height:58px;position:relative;overflow:hidden;flex:none;
-    background:linear-gradient(180deg,hsl(var(--h,215),42%,13%),hsl(var(--h,215),48%,25%))}
+  .card.isLeader{border-color:var(--cedar);box-shadow:0 0 0 1px var(--cedar)}
+  .scene{height:60px;position:relative;overflow:hidden;flex:none;
+    background:linear-gradient(180deg,hsl(var(--h,200),26%,11%),hsl(var(--h,200),30%,19%))}
   .scene svg{position:absolute;inset:0;width:100%;height:100%}
   .cbody{padding:18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
   .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .card h3{margin:0;font-size:19px;letter-spacing:-.01em;font-family:var(--serif)}
-  .card .loc{color:var(--sky);font-size:13.5px;margin-top:2px}
-  .badge{flex:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    background:var(--amber);color:#1a1405;border-radius:6px;padding:4px 9px;white-space:nowrap}
-  .badge.dim{background:transparent;border:1px solid var(--faint);color:var(--faint)}
+  .card h3{margin:0;font-size:19px;letter-spacing:-.01em;font-family:var(--serif);font-weight:650}
+  .card .loc{color:var(--mist);font-size:13px;margin-top:3px;font-family:var(--mono);letter-spacing:.02em}
   .badges{display:flex;gap:6px;flex:none;align-items:flex-start}
-  .scorePill{font-size:12px;font-weight:800;background:rgba(242,181,68,.12);border:1px solid var(--amber);
-    color:var(--amber2);border-radius:8px;padding:4px 8px;white-space:nowrap}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--cedar);color:#1a1206;border-radius:6px;padding:4px 9px;white-space:nowrap}
+  .badge.dim{background:transparent;border:1px solid var(--faint);color:var(--faint)}
+  .scorePill{font-size:12px;font-weight:800;background:rgba(168,195,201,.08);border:1px solid var(--mist);
+    color:var(--mist);border-radius:8px;padding:4px 8px;white-space:nowrap;font-family:var(--mono)}
   .scorePill.dim{border-color:var(--faint);color:var(--faint);background:transparent}
-  details.lh{font-size:13.5px;color:var(--muted)}
-  details.lh summary{cursor:pointer;color:var(--sky);font-weight:600}
-  details.lh .why{margin:8px 0 4px;color:var(--ink)}
-  details.lh ul{margin:6px 0 10px;padding-left:18px;display:grid;gap:4px}
-  .lv{color:var(--green)} .ht{color:#ffb3a3}
   .desc{color:var(--ink);font-size:14.5px;margin:0}
   .facts{margin:0;padding:0;list-style:none;font-size:13.5px;color:var(--muted);display:grid;gap:5px}
   .facts b{color:var(--ink);font-weight:600}
   .facts .ok{color:var(--green)}
-  .rev{font-size:13.5px;color:var(--amber2)}
-  .warn{font-size:13px;color:#ffb3a3;background:rgba(255,120,90,.07);border:1px solid rgba(255,120,90,.25);
+  .rev{font-size:13.5px;color:var(--cedar2)}
+  .warn{font-size:13px;color:#f0b9a8;background:rgba(210,120,90,.07);border:1px solid rgba(210,120,90,.25);
     border-radius:8px;padding:8px 11px}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
   .tag{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-  .tag.dark{color:#cfe4ff;border-color:rgba(143,199,255,.4)}
+  .tag.dark{color:#d7e7ea;border-color:rgba(168,195,201,.4)}
+  details.lh{font-size:13.5px;color:var(--muted)}
+  details.lh summary{cursor:pointer;color:var(--mist);font-weight:600}
+  details.lh .why{margin:8px 0 4px;color:var(--ink)}
+  details.lh ul{margin:6px 0 10px;padding-left:18px;display:grid;gap:4px}
+  .lv{color:var(--green)} .ht{color:#f0b9a8}
   .starRow{font-size:13.5px;color:var(--muted);display:flex;align-items:center;border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
   .starRow .star{cursor:pointer;font-size:22px;color:var(--faint);line-height:1;padding:0 1px;transition:color .1s}
-  .starRow .star.lit{color:var(--amber)}
+  .starRow .star.lit{color:var(--gold)}
   .go{margin-top:auto;padding-top:4px}
-  .go a{display:inline-block;background:var(--amber);color:#1a1405;font-weight:700;text-decoration:none;
+  .go a{display:inline-block;background:var(--cedar);color:#1a1206;font-weight:700;text-decoration:none;
     border-radius:10px;padding:9px 18px;font-size:14px}
-  .go a:hover{background:var(--amber2)}
+  .go a:hover{background:var(--cedar2)}
   .go .nolink{font-size:13px;color:var(--faint)}
   footer{margin:56px 0 40px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);padding-top:22px}
-  footer a{color:var(--sky)}
+  footer a{color:var(--mist)}
   @media(max-width:560px){.grid{grid-template-columns:1fr}.lbLoc{display:none}}
 </style>
 </head>
-<body>
 
 <div class="sky">
-  <svg class="scene" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="scene" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
       <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#040814"/><stop offset=".55" stop-color="#0c1a36"/><stop offset="1" stop-color="#1c3a63"/>
+        <stop offset="0" stop-color="#060d10"/><stop offset=".55" stop-color="#10262b"/><stop offset="1" stop-color="#1d3a3c"/>
       </linearGradient>
-      <radialGradient id="glow" cx=".5" cy=".5" r=".5">
-        <stop offset="0" stop-color="#ffb84d" stop-opacity=".55"/><stop offset="1" stop-color="#ffb84d" stop-opacity="0"/>
+      <linearGradient id="fogG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#cfdfe2" stop-opacity="0"/><stop offset=".5" stop-color="#cfdfe2" stop-opacity=".13"/><stop offset="1" stop-color="#cfdfe2" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="cabGlow" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#e8a84d" stop-opacity=".5"/><stop offset="1" stop-color="#e8a84d" stop-opacity="0"/>
       </radialGradient>
+      <g id="pine" fill="#0a1818">
+        <polygon points="0,-64 16,-28 -16,-28"/><polygon points="0,-48 20,-8 -20,-8"/><rect x="-3.5" y="-8" width="7" height="12"/>
+      </g>
     </defs>
-    <rect width="1200" height="460" fill="url(#skyG)"/>
-    <g id="stars" fill="#ffffff"></g>
-    <circle cx="985" cy="92" r="44" fill="#f5e9c8" opacity=".92"/>
-    <circle cx="968" cy="78" r="38" fill="#0a1428" opacity=".5"/>
-    <polygon points="0,460 190,250 380,460" fill="#16263f"/>
-    <polygon points="280,460 520,210 760,460" fill="#12203a"/>
-    <polygon points="640,460 900,240 1160,460" fill="#16263f"/>
-    <polygon points="980,460 1200,300 1200,460" fill="#12203a"/>
-    <g fill="#0a1526">
-      <polygon points="120,460 138,380 156,460"/><polygon points="150,460 162,410 174,460"/>
-      <polygon points="700,460 720,370 740,460"/><polygon points="735,460 748,400 761,460"/>
-      <polygon points="1050,460 1068,388 1086,460"/>
+    <rect width="1200" height="480" fill="url(#skyG)"/>
+    <g fill="#e8f0f2" opacity=".35">
+      <circle cx="120" cy="60" r="1.4"/><circle cx="240" cy="110" r="1"/><circle cx="360" cy="50" r="1.4"/><circle cx="480" cy="90" r="1"/>
+      <circle cx="600" cy="45" r="1.4"/><circle cx="700" cy="120" r="1"/><circle cx="820" cy="55" r="1.4"/><circle cx="1080" cy="70" r="1"/>
+      <circle cx="180" cy="150" r="1"/><circle cx="540" cy="150" r="1.2"/><circle cx="880" cy="160" r="1"/><circle cx="1140" cy="140" r="1.2"/>
     </g>
+    <circle cx="952" cy="96" r="34" fill="#e6e2d0" opacity=".7"/>
+    <ellipse cx="952" cy="96" rx="72" ry="24" fill="#cfdfe2" opacity=".12"/>
+    <polygon points="0,480 210,300 430,480" fill="#33505a" opacity=".45"/>
+    <polygon points="310,480 580,260 870,480" fill="#243c40" opacity=".8"/>
+    <g class="fogDrift"><rect x="-120" y="296" width="1440" height="72" fill="url(#fogG)"/></g>
+    <polygon points="660,480 950,290 1240,480" fill="#152a2c"/>
+    <rect x="0" y="336" width="1200" height="44" fill="url(#fogG)" opacity=".65"/>
+    <use href="#pine" transform="translate(90,478) scale(1.25)"/><use href="#pine" transform="translate(150,480) scale(.9)"/>
+    <use href="#pine" transform="translate(210,478) scale(1.1)"/><use href="#pine" transform="translate(265,480) scale(.75)"/>
+    <use href="#pine" transform="translate(1010,480) scale(1.15)"/><use href="#pine" transform="translate(1075,478) scale(.85)"/>
+    <use href="#pine" transform="translate(1130,480) scale(1.2)"/>
     <g>
-      <polygon points="470,460 520,380 570,460" fill="#233a2e"/>
-      <polygon points="520,380 520,460 548,460 548,404" fill="#f2b544" opacity=".9"/>
-      <circle cx="520" cy="352" r="46" fill="url(#glow)"/>
-      <polygon points="470,460 520,380 570,460" fill="none" stroke="#0c1a12" stroke-width="3"/>
+      <circle cx="545" cy="430" r="44" fill="url(#cabGlow)"/>
+      <polygon points="513,472 545,416 577,472" fill="#0c1a1a" stroke="#050c0c" stroke-width="2"/>
+      <rect x="538" y="442" width="14" height="18" fill="#e8a84d" opacity=".92"/>
     </g>
+    <polygon points="0,480 0,452 1200,452 1200,480" fill="#081213"/>
   </svg>
   <header class="hero">
     <div class="wrap">
-      <div class="kicker">★&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;Nidderdale · Dales · Moors · Lakes&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;★</div>
-      <h1><span class="wild">Wild Skies</span> — All-Year Rural Campsites</h1>
-      <p class="sub">Small, picturesque, quirky and peaceful sites with proper toilets &amp; showers, all open <b>all year round</b>, within about two hours of Harrogate. The ones people rave about — and the dark skies above them.</p>
+      <div class="kicker">A field guide to all-year camping</div>
+      <h1><em>Wild Skies</em> — all-year rural campsites</h1>
+      <p class="sub">Small, picturesque, quirky and peaceful sites with proper toilets &amp; showers, open <b>all year round</b>, within about two hours of Harrogate. The ones people rave about — under some of the darkest skies in England.</p>
+      <div class="stats"><span>24 sites</span><span>Dark-sky country</span><span>Max ~2 hrs</span></div>
       <div class="caveat">⚠️ All-year opening was confirmed from campsite listings in October 2026 — please double-check “open all year” with the site itself before booking, especially for a winter trip. Prices are indicative.</div>
     </div>
   </header>
@@ -166,7 +190,7 @@
 
 <div class="wrap">
   <section id="poll">
-    <h2 class="section">🏕️ The great campsite vote <span class="n">tap the stars, crown a leader</span></h2>
+    <h2 class="section"><span class="secNo">01</span>The great campsite vote <span class="n">tap the stars, crown a leader</span></h2>
     <p class="lede">Everyone scores the sites that appeal to them. Add each person, flip between individual and combined leaderboards, and see which site wins.</p>
     <div id="whoBanner" class="caveat" style="display:none"></div>
     <div id="voterBar"></div>
@@ -187,11 +211,11 @@
     </details>
   </section>
 
-  <h2 class="section">The shortlist <span class="n" id="secCount"></span></h2>
+  <h2 class="section"><span class="secNo">02</span>The shortlist <span class="n" id="secCount"></span></h2>
   <p class="lede">Standouts first, then the rest roughly by drive time from Harrogate. Each card carries a <b>brief-fit score</b> (out of 100) rating how well the site matches the brief — expand <b>What people love &amp; hate</b> for the detail, or hit <b>⇅ Brief fit</b> above to sort by score.</p>
   <div class="grid" id="grid"></div>
 
-  <h2 class="section">Worth a look — verify first</h2>
+  <h2 class="section"><span class="secNo">03</span>Worth a look — verify first</h2>
   <p class="lede">These looked promising but something couldn’t be confirmed (usually the all-year opening or the showers). One phone call could promote any of them.</p>
   <div class="grid" id="maybe"></div>
 
@@ -413,13 +437,15 @@ function tagList(s){
   return t.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join('');
 }
 function scene(hue){
-  return `<div class="scene" style="--h:${hue}"><svg viewBox="0 0 400 58" preserveAspectRatio="xMidYMid slice">`+
-  `<circle cx="332" cy="13" r="7" fill="#f5e9c8" opacity=".9"/>`+
-  `<polygon points="0,58 86,20 172,58" fill="rgba(0,0,0,.42)"/>`+
-  `<polygon points="120,58 228,8 336,58" fill="rgba(0,0,0,.55)"/>`+
-  `<polygon points="292,58 366,26 400,58" fill="rgba(0,0,0,.42)"/>`+
-  `<polygon points="52,58 60,34 68,58" fill="rgba(0,0,0,.6)"/><polygon points="66,58 72,40 78,58" fill="rgba(0,0,0,.6)"/>`+
-  `</svg></div>`;
+  return `<div class="scene" style="--h:${hue}"><svg viewBox="0 0 400 60" preserveAspectRatio="xMidYMid slice">`+
+  `<polygon points="0,60 70,26 150,60" style="fill:hsl(var(--h,200),22%,30%)" opacity=".8"/>`+
+  `<polygon points="110,60 210,14 320,60" style="fill:hsl(var(--h,200),25%,21%)"/>`+
+  `<polygon points="270,60 350,30 400,60" style="fill:hsl(var(--h,200),28%,15%)"/>`+
+  `<rect x="0" y="30" width="400" height="9" fill="#dfe9ea" opacity=".1"/>`+
+  `<g style="fill:hsl(var(--h,200),30%,9%)">`+
+  `<polygon points="36,60 46,30 56,60"/><polygon points="50,60 57,38 64,60"/>`+
+  `<polygon points="330,60 340,28 350,60"/><polygon points="344,60 351,40 358,60"/>`+
+  `</g></svg></div>`;
 }
 function card(s,idx){
   const facts=s.f.map(([k,v])=>`<li><b>${k}:</b> ${v}</li>`).join('');
@@ -471,16 +497,6 @@ document.getElementById('sortBtn').addEventListener('click',function(){
   }).forEach(c=>grid.appendChild(c));
   apply();
 });
-/* ---------- hero stars ---------- */
-(function(){
-  const g=document.getElementById('stars'); if(!g)return;
-  let h='';
-  for(let i=0;i<70;i++){
-    const x=(i*167.3)%1200, y=(i*89.7)%300, r=(i%3===0?1.6:1), d=(i%7)*0.45;
-    h+=`<circle class="tw" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r}" style="animation-delay:${d.toFixed(2)}s"/>`;
-  }
-  g.innerHTML=h;
-})();
 /* ---------- poll: named voters, per-person + combined leaderboards ---------- */
 const PKEY='wildskies_v3';
 let poll={voters:{},current:null};

@@ -7,43 +7,76 @@
 <meta name="description" content="Small, picturesque, all-year campsites with proper toilets and showers within ~2 hours of Harrogate. Researched October 2026.">
 <style>
   :root{
-    --bg:#0c1420; --bg2:#111c2e; --card:#16233a; --card2:#1a2942;
-    --ink:#eef3fa; --muted:#9fb0c8; --faint:#6b7d99;
-    --amber:#f2b544; --amber2:#ffd98a; --green:#7fd08a; --sky:#8fc7ff;
-    --line:rgba(255,255,255,.08);
+    --bg:#0a1220; --card:#141f33; --card2:#182642;
+    --ink:#eef3fa; --muted:#9fb0c8; --faint:#67789300; --faint:#6b7d99;
+    --amber:#f2b544; --amber2:#ffd98a; --green:#8fd694; --sky:#8fc7ff;
+    --moss:#3f6b4f; --line:rgba(255,255,255,.09);
+    --serif:Georgia,'Times New Roman',serif;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(1200px 500px at 50% -80px,#1b2c4d 0%,var(--bg) 55%) fixed,var(--bg);color:var(--ink);
+  body{margin:0;background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
   .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  header.hero{padding:64px 0 28px;text-align:center}
-  header.hero .stars{font-size:13px;letter-spacing:.35em;color:var(--amber);margin-bottom:14px}
-  h1{font-size:clamp(30px,5vw,52px);margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
-  h1 .wild{color:var(--amber2)}
-  .sub{color:var(--muted);max-width:720px;margin:0 auto;font-size:17px}
-  .caveat{margin:26px auto 0;max-width:760px;background:rgba(242,181,68,.08);border:1px solid rgba(242,181,68,.35);
-    border-radius:12px;padding:12px 18px;font-size:14px;color:var(--amber2)}
-  .filters{position:sticky;top:0;z-index:5;background:rgba(12,20,32,.92);backdrop-filter:blur(8px);
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:34px 0 8px}
+  /* ---------- hero ---------- */
+  .sky{position:relative;overflow:hidden;background:#060b18}
+  .sky svg.scene{position:absolute;inset:0;width:100%;height:100%}
+  .hero{position:relative;z-index:2;text-align:center;padding:78px 20px 60px}
+  .hero .kicker{font-size:12px;letter-spacing:.4em;color:var(--amber);text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--serif);font-size:clamp(34px,6vw,62px);margin:0 0 12px;font-weight:700;letter-spacing:-.01em;
+    text-shadow:0 2px 24px rgba(0,0,0,.7)}
+  .hero h1 .wild{color:var(--amber2);font-style:italic}
+  .hero .sub{color:#cdd9ec;max-width:700px;margin:0 auto;font-size:17px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
+  .tw{animation:tw 3.2s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.25}50%{opacity:.95}}
+  .caveat{margin:26px auto 0;max-width:760px;background:rgba(10,18,32,.72);border:1px solid rgba(242,181,68,.4);
+    border-radius:12px;padding:12px 18px;font-size:14px;color:var(--amber2);backdrop-filter:blur(4px)}
+  /* ---------- filters ---------- */
+  .filters{position:sticky;top:0;z-index:5;background:rgba(10,18,32,.94);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:0 0 8px}
   .filters .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
   .chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;
-    padding:7px 15px;font-size:14px;cursor:pointer;transition:all .15s}
+    padding:7px 15px;font-size:14px;cursor:pointer;transition:all .15s;font-family:inherit}
   .chip:hover{border-color:var(--amber);color:var(--ink)}
   .chip.on{background:var(--amber);border-color:var(--amber);color:#1a1405;font-weight:700}
   .count{margin-left:auto;color:var(--faint);font-size:13px}
-  h2.section{font-size:22px;margin:38px 0 4px;display:flex;align-items:center;gap:10px}
-  h2.section .n{font-size:13px;color:var(--faint);font-weight:400}
+  h2.section{font-family:var(--serif);font-size:26px;margin:40px 0 4px;display:flex;align-items:center;gap:10px}
+  h2.section .n{font-size:13px;color:var(--faint);font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
   p.lede{color:var(--muted);margin:0 0 6px;max-width:760px}
+  /* ---------- poll ---------- */
+  #voterBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 4px}
+  .vlabel{color:var(--muted);font-size:14px}
+  #whoBanner{margin-top:12px}
+  #whoBanner input{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:10px;
+    padding:9px 14px;font-size:15px;font-family:inherit;width:min(280px,100%)}
+  .lbtabs{display:flex;gap:8px;margin:12px 0 4px}
+  #leaderboard{display:grid;gap:8px;margin:12px 0 4px}
+  .lbRow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+  .lbRow.leader{border-color:var(--amber);background:rgba(242,181,68,.07)}
+  .lbRank{font-size:18px;min-width:30px;text-align:center}
+  .lbName{font-weight:700}
+  .lbStars{color:var(--amber);letter-spacing:2px;white-space:nowrap}
+  .lbVotes{color:var(--faint);font-size:12.5px}
+  .lbLoc{margin-left:auto;color:var(--faint);font-size:13px;text-align:right}
+  .pollActions{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
+  details.how{margin:10px 0 4px;color:var(--muted);font-size:14px;max-width:780px}
+  details.how summary{cursor:pointer;color:var(--sky);font-weight:600}
+  details.how p{margin:8px 0}
+  /* ---------- cards ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:18px}
   .card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
-    padding:20px 20px 18px;display:flex;flex-direction:column;gap:10px;transition:transform .15s,border-color .15s}
+    overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
   .card:hover{transform:translateY(-2px);border-color:rgba(242,181,68,.4)}
   .card.hide{display:none}
+  .card.isLeader{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+  .scene{height:58px;position:relative;overflow:hidden;flex:none;
+    background:linear-gradient(180deg,hsl(var(--h,215),42%,13%),hsl(var(--h,215),48%,25%))}
+  .scene svg{position:absolute;inset:0;width:100%;height:100%}
+  .cbody{padding:18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
   .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .card h3{margin:0;font-size:19px;letter-spacing:-.01em}
+  .card h3{margin:0;font-size:19px;letter-spacing:-.01em;font-family:var(--serif)}
   .card .loc{color:var(--sky);font-size:13.5px;margin-top:2px}
   .badge{flex:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    background:var(--amber);color:#1a1405;border-radius:6px;padding:4px 9px}
+    background:var(--amber);color:#1a1405;border-radius:6px;padding:4px 9px;white-space:nowrap}
   .badge.dim{background:transparent;border:1px solid var(--faint);color:var(--faint)}
   .desc{color:var(--ink);font-size:14.5px;margin:0}
   .facts{margin:0;padding:0;list-style:none;font-size:13.5px;color:var(--muted);display:grid;gap:5px}
@@ -55,37 +88,60 @@
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
   .tag{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
   .tag.dark{color:#cfe4ff;border-color:rgba(143,199,255,.4)}
-  .go{margin-top:auto;padding-top:6px}
+  .starRow{font-size:13.5px;color:var(--muted);display:flex;align-items:center;border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+  .starRow .star{cursor:pointer;font-size:22px;color:var(--faint);line-height:1;padding:0 1px;transition:color .1s}
+  .starRow .star.lit{color:var(--amber)}
+  .go{margin-top:auto;padding-top:4px}
   .go a{display:inline-block;background:var(--amber);color:#1a1405;font-weight:700;text-decoration:none;
     border-radius:10px;padding:9px 18px;font-size:14px}
   .go a:hover{background:var(--amber2)}
   .go .nolink{font-size:13px;color:var(--faint)}
   footer{margin:56px 0 40px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);padding-top:22px}
   footer a{color:var(--sky)}
-  .starRow{font-size:13.5px;color:var(--muted);display:flex;align-items:center}
-  .starRow .star{cursor:pointer;font-size:22px;color:var(--faint);line-height:1;padding:0 1px;transition:color .1s}
-  .starRow .star.lit{color:var(--amber)}
-  .card.isLeader{border-color:var(--amber)}
-  #leaderboard{display:grid;gap:8px;margin:14px 0 4px}
-  .lbRow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
-  .lbRow.leader{border-color:var(--amber);background:rgba(242,181,68,.07)}
-  .lbRank{font-size:18px;min-width:30px;text-align:center}
-  .lbName{font-weight:700}
-  .lbStars{color:var(--amber);letter-spacing:2px;white-space:nowrap}
-  .lbLoc{margin-left:auto;color:var(--faint);font-size:13px;text-align:right}
-  .pollActions{display:flex;gap:8px;margin:8px 0 4px;flex-wrap:wrap}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}.lbLoc{display:none}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <div class="stars">★&nbsp;&nbsp;★&nbsp;&nbsp;★</div>
-    <h1><span class="wild">Wild Skies</span> — All-Year Rural Campsites</h1>
-    <p class="sub">Small, picturesque, quirky and peaceful sites with proper toilets &amp; showers, all open <b>all year round</b>, within about two hours of Harrogate. The ones people rave about — and the dark skies above them.</p>
-    <div class="caveat">⚠️ All-year opening was confirmed from campsite listings in October 2026 — please double-check “open all year” with the site itself before booking, especially for a winter trip. Prices are indicative.</div>
-  </div>
-</header>
+
+<div class="sky">
+  <svg class="scene" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#040814"/><stop offset=".55" stop-color="#0c1a36"/><stop offset="1" stop-color="#1c3a63"/>
+      </linearGradient>
+      <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#ffb84d" stop-opacity=".55"/><stop offset="1" stop-color="#ffb84d" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="460" fill="url(#skyG)"/>
+    <g id="stars" fill="#ffffff"></g>
+    <circle cx="985" cy="92" r="44" fill="#f5e9c8" opacity=".92"/>
+    <circle cx="968" cy="78" r="38" fill="#0a1428" opacity=".5"/>
+    <polygon points="0,460 190,250 380,460" fill="#16263f"/>
+    <polygon points="280,460 520,210 760,460" fill="#12203a"/>
+    <polygon points="640,460 900,240 1160,460" fill="#16263f"/>
+    <polygon points="980,460 1200,300 1200,460" fill="#12203a"/>
+    <g fill="#0a1526">
+      <polygon points="120,460 138,380 156,460"/><polygon points="150,460 162,410 174,460"/>
+      <polygon points="700,460 720,370 740,460"/><polygon points="735,460 748,400 761,460"/>
+      <polygon points="1050,460 1068,388 1086,460"/>
+    </g>
+    <g>
+      <polygon points="470,460 520,380 570,460" fill="#233a2e"/>
+      <polygon points="520,380 520,460 548,460 548,404" fill="#f2b544" opacity=".9"/>
+      <circle cx="520" cy="352" r="46" fill="url(#glow)"/>
+      <polygon points="470,460 520,380 570,460" fill="none" stroke="#0c1a12" stroke-width="3"/>
+    </g>
+  </svg>
+  <header class="hero">
+    <div class="wrap">
+      <div class="kicker">★&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;Nidderdale · Dales · Moors · Lakes&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;★</div>
+      <h1><span class="wild">Wild Skies</span> — All-Year Rural Campsites</h1>
+      <p class="sub">Small, picturesque, quirky and peaceful sites with proper toilets &amp; showers, all open <b>all year round</b>, within about two hours of Harrogate. The ones people rave about — and the dark skies above them.</p>
+      <div class="caveat">⚠️ All-year opening was confirmed from campsite listings in October 2026 — please double-check “open all year” with the site itself before booking, especially for a winter trip. Prices are indicative.</div>
+    </div>
+  </header>
+</div>
 
 <div class="filters"><div class="wrap" id="chips">
   <button class="chip on" data-f="all">All sites</button>
@@ -100,15 +156,27 @@
 
 <div class="wrap">
   <section id="poll">
-    <h2 class="section">🏆 Leaderboard <span class="n">scored by you</span></h2>
-    <p class="lede" id="lbEmpty">Tap the stars on any site below to score it out of five — your leader will be crowned here.</p>
+    <h2 class="section">🏕️ The great campsite vote <span class="n">tap the stars, crown a leader</span></h2>
+    <p class="lede">Everyone scores the sites that appeal to them. Add each person, flip between individual and combined leaderboards, and see which site wins.</p>
+    <div id="whoBanner" class="caveat" style="display:none"></div>
+    <div id="voterBar"></div>
+    <div class="lbtabs" id="lbtabs">
+      <button class="chip on" data-tab="me">My leaderboard</button>
+      <button class="chip" data-tab="all">Everyone combined</button>
+    </div>
+    <p class="lede" id="lbEmpty">Tap the stars on any site below to score it out of five — the leader will be crowned here.</p>
     <div id="leaderboard"></div>
     <div class="pollActions">
       <button class="chip" id="shareBtn">Copy my scores link</button>
-      <button class="chip" id="resetBtn">Reset scores</button>
+      <button class="chip" id="resetBtn">Reset my scores</button>
     </div>
     <div id="shareBanner" class="caveat" style="display:none;margin-top:12px"></div>
+    <details class="how"><summary>How does the scoring work?</summary>
+      <p>Scores live <b>in this browser only</b> — nothing is uploaded anywhere, because the site is just static files on GitHub Pages with no server behind it. Add each person who's choosing (you, Hattie…) with the + button, tap the stars on the sites that appeal to each of you, and the leaderboard crowns the leader — per person, or combined across everyone.</p>
+      <p>To pull in someone's scores from another phone, get them to tap <b>Copy my scores link</b> and open it here: you'll be offered to save their scores alongside yours. That's how the combined board gets built — one shared link at a time.</p>
+    </details>
   </section>
+
   <h2 class="section">The shortlist <span class="n" id="secCount"></span></h2>
   <p class="lede">Standouts first, then the rest roughly by drive time from Harrogate. Use the filters above to narrow it down.</p>
   <div class="grid" id="grid"></div>
@@ -177,7 +245,7 @@ const SITES=[
 {n:"Alanholme",loc:"Long Marton, Eden Valley — ~1h20",motorhome:1,
  d:"Eden Valley site with the pub two minutes’ walk away. Small, friendly, well-kept.",
  f:[["Pitches","Tent / caravan / motorhome"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
- r:"10/10 (22) ukcampsite · 5.0 (16) Google",p:"£20 tent/2 people; £25 caravan/motorhome incl. EHU",w:"Pitch count disputed between listings (5 vs 21) — check.",
+ r:"10/10 (22) ukcampsite · 5.0 (16) Google",p:"£20 tent/2 people; £25 caravan/motorhome incl EHU",w:"Pitch count disputed between listings (5 vs 21) — check.",
  link:["https://alanholme.co.uk","Visit Alanholme"]},
 {n:"Sykeside",loc:"Penrith, Dovedale Valley — ~1h20",motorhome:1,campfire:1,
  d:"Fell views in the Dovedale Valley with the Brotherswater Inn on site and fire pits welcome. 90+ pitches, so not small — but the reviews are raves.",
@@ -215,6 +283,16 @@ const SITES=[
  d:"Working farm in the Derwent Valley with virtually no road noise, panoramic Skiddaw views, alpacas, pygmy goats, emus, owls and a wildlife tarn. The toilet block has underfloor heating.",
  f:[["Pitches","5 hardstanding + tents; tents/caravans/motorhomes; EHU; campfires"],["Facilities","<span class='ok'>Beautiful purpose-built toilet block, underfloor heating</span>"]],
  r:"10/10 (36) ukcampsite",p:"Not listed — check site",w:"C&CC members only. Grass tent pitches Easter–Sept only — all-year means hardstanding/pod."},
+{n:"Hadrian’s Wall Campsite",loc:"Melkridge, Haltwhistle — ~1h50",dark:1,motorhome:1,campfire:1,
+ d:"Small, secluded family-run site less than a mile from the most dramatic stretches of Hadrian’s Wall — “magnificent unspoilt landscapes” made for walks, Roman forts and stargazing. Travellers’ Choice 2023.",
+ f:[["Pitches","40 pitches; tents, caravans, motorhomes, small campervans; EHU + hardstanding"],["Facilities","<span class='ok'>Toilets + hot showers (heated block); cook-house; laundry; motorhome point; shop on site</span>"]],
+ r:"9/10 (253) ukcampsite · 4.5 (116) Google — “friendly, helpful and very welcoming”",p:"£20/night (reviewers)",
+ link:["http://hadrianswallcampsite.co.uk/","Visit Hadrian’s Wall Campsite"]},
+{n:"Herding Hill Farm",loc:"Haltwhistle, Northumberland — ~1h50",dark:1,motorhome:1,campfire:1,
+ d:"The only 5-star site in Hadrian’s Wall country — Dark Sky Friendly, with alpacas, donkeys, a petting farm and pizzas delivered to your pitch.",
+ f:[["Pitches","9 serviced hardstanding + 4 standard + 10 grass tent pitches; tents/caravans/motorhomes"],["Facilities","<span class='ok'>State-of-the-art amenity block: sauna, drying room, underfloor-heated showers</span>"]],
+ r:"4.8 (219) Google · 10/10 Pitchup reviews — “spotlessly clean… LOVE the addition of baths!!”",p:"From £30/night for 2",w:"Open all year for tourers/hardstanding — grass tent pitches Easter–Oct only.",
+ link:["https://www.herdinghillfarm.co.uk/","Visit Herding Hill Farm"]},
 {n:"Ellergill Raise",loc:"Nethertown, Egremont — ~2h",motorhome:1,adults:1,
  d:"Small adults-only site on the edge of the Lake District National Park, overlooking the fells and a mile from the beach. Great walking country.",
  f:[["Pitches","15 pitches; tents, caravans, motorhomes, small campervans; 5 hardstanding + grass; EHU"],["Facilities","<span class='ok'>Toilet + shower block (free)</span>"]],
@@ -226,10 +304,11 @@ const SITES=[
 ];
 const MAYBE=[
 {n:"How Stean Gorge",loc:"Lofthouse, Nidderdale",d:"Gorge, caves, fire pits and café on site; reviewers confirm “plenty of clean toilets… always able to access a free hot shower”.",w:"All-year opening not verified — check howstean.co.uk."},
-{n:"Herding Hill Farm",loc:"Haltwhistle, Northumberland",d:"Dark Sky Friendly site with 5-star amenities and 10/10 Pitchup reviews; from £30/night for 2. Grass tent pitches Easter–Oct only, hardstanding all year.",w:"All-year for tents on grass not confirmed — fine for motorhomes."},
 {n:"Blackburn Farm",loc:"Hawes, Wensleydale",d:"9/10 (11) with toilets and showers claimed all year on ukcampsite.",w:"Council register says Mar–Oct — conflicting, verify."},
-{n:"The Crown",loc:"Hutton-le-Hole, North York Moors",d:"9/10 (21); 4 pitches in a gorgeous moors village; open all year.",w:"Campsite showers not verified."}
+{n:"The Crown",loc:"Hutton-le-Hole, North York Moors",d:"9/10 (21); 4 pitches in a gorgeous moors village; open all year.",w:"Campsite showers not verified."},
+{n:"Border Forest Holiday Park",loc:"Kielder Forest edge, Northumberland",d:"Secluded park on the edge of Kielder Forest — 10 hardstanding touring pitches by the river Rede. 4.9 (47): “Peace, perfect peace.”",w:"All-year opening not verified."}
 ];
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function tagList(s){
   const t=[];
   if(s.dark)t.push(['dark','★ Dark skies']);
@@ -239,24 +318,36 @@ function tagList(s){
   if(s.near)t.push(['','< 1 hr']);
   return t.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join('');
 }
+function scene(hue){
+  return `<div class="scene" style="--h:${hue}"><svg viewBox="0 0 400 58" preserveAspectRatio="xMidYMid slice">`+
+  `<circle cx="332" cy="13" r="7" fill="#f5e9c8" opacity=".9"/>`+
+  `<polygon points="0,58 86,20 172,58" fill="rgba(0,0,0,.42)"/>`+
+  `<polygon points="120,58 228,8 336,58" fill="rgba(0,0,0,.55)"/>`+
+  `<polygon points="292,58 366,26 400,58" fill="rgba(0,0,0,.42)"/>`+
+  `<polygon points="52,58 60,34 68,58" fill="rgba(0,0,0,.6)"/><polygon points="66,58 72,40 78,58" fill="rgba(0,0,0,.6)"/>`+
+  `</svg></div>`;
+}
 function card(s,idx){
   const facts=s.f.map(([k,v])=>`<li><b>${k}:</b> ${v}</li>`).join('');
-  return `<article class="card" data-i="${idx}" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':''].join(' ')}">
-    <div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div>${s.standout?'<span class="badge">★ Standout</span>':''}</div>
-    <p class="desc">${s.d}</p>
-    <ul class="facts">${facts}</ul>
-    <div class="rev">${s.r}</div>
-    <div class="facts"><li><b>Price:</b> ${s.p}</li></div>
-    ${s.w?`<div class="warn">⚠️ ${s.w}</div>`:''}
-    <div class="tags">${tagList(s)}</div>
-    <div class="starRow" data-i="${idx}"><span>Your score:&nbsp;</span>${[1,2,3,4,5].map(v=>`<span class="star" data-v="${v}">★</span>`).join('')}</div>
-    <div class="go">${s.link?`<a href="${s.link[0]}" target="_blank" rel="noopener">${s.link[1]} →</a>`:'<span class="nolink">Find it on ukcampsite.co.uk / the club sites</span>'}</div>
-  </article>`;
+  const hue=205+((idx*47)%55);
+  return `<article class="card" data-i="${idx}" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':''].join(' ')}">`+
+    scene(hue)+
+    `<div class="cbody"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div>${s.standout?'<span class="badge">★ Standout</span>':''}</div>`+
+    `<p class="desc">${s.d}</p>`+
+    `<ul class="facts">${facts}</ul>`+
+    `<div class="rev">${s.r}</div>`+
+    `<div class="facts"><li><b>Price:</b> ${s.p}</li></div>`+
+    (s.w?`<div class="warn">⚠️ ${s.w}</div>`:'')+
+    `<div class="tags">${tagList(s)}</div>`+
+    `<div class="starRow" data-i="${idx}"><span>Your score:&nbsp;</span>${[1,2,3,4,5].map(v=>`<span class="star" data-v="${v}">★</span>`).join('')}</div>`+
+    `<div class="go">${s.link?`<a href="${s.link[0]}" target="_blank" rel="noopener">${s.link[1]} →</a>`:'<span class="nolink">Find it on ukcampsite.co.uk / the club sites</span>'}</div>`+
+    `</div></article>`;
 }
 document.getElementById('grid').innerHTML=SITES.map((s,i)=>card(s,i)).join('');
 document.getElementById('maybe').innerHTML=MAYBE.map(s=>
- `<article class="card"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div><span class="badge dim">Check first</span></div>
-  <p class="desc">${s.d}</p><div class="warn">⚠️ ${s.w}</div></article>`).join('');
+ `<article class="card"><div class="cbody"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div><span class="badge dim">Check first</span></div>`+
+  `<p class="desc">${s.d}</p><div class="warn">⚠️ ${s.w}</div></div></article>`).join('');
+/* ---------- filters ---------- */
 const chips=[...document.querySelectorAll('#chips .chip')];
 function apply(){
   const on=chips.find(c=>c.classList.contains('on')).dataset.f;
@@ -270,68 +361,145 @@ function apply(){
 }
 chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('on'));c.classList.add('on');apply();}));
 apply();
-
-/* ---- Poll: per-site star scores, leaderboard, shareable scores link ---- */
-const LS='wildskies_scores_v1';
-let scores={};
-try{scores=JSON.parse(localStorage.getItem(LS)||'{}')||{}}catch(e){scores={}}
+/* ---------- hero stars ---------- */
+(function(){
+  const g=document.getElementById('stars'); if(!g)return;
+  let h='';
+  for(let i=0;i<70;i++){
+    const x=(i*167.3)%1200, y=(i*89.7)%300, r=(i%3===0?1.6:1), d=(i%7)*0.45;
+    h+=`<circle class="tw" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r}" style="animation-delay:${d.toFixed(2)}s"/>`;
+  }
+  g.innerHTML=h;
+})();
+/* ---------- poll: named voters, per-person + combined leaderboards ---------- */
+const PKEY='wildskies_v3';
+let poll={voters:{},current:null};
+try{const raw=JSON.parse(localStorage.getItem(PKEY)||'null');if(raw&&raw.voters)poll=raw;}catch(e){}
+let lbTab='me';
+function savePoll(){try{localStorage.setItem(PKEY,JSON.stringify(poll))}catch(e){}}
+function myScores(){return (poll.current&&poll.voters[poll.current])?poll.voters[poll.current]:{};}
 function paintStars(){
+  const ms=myScores();
   document.querySelectorAll('.starRow').forEach(row=>{
-    const i=row.dataset.i, v=scores[i]||0;
+    const i=row.dataset.i, v=ms[i]||0;
     row.querySelectorAll('.star').forEach(st=>st.classList.toggle('lit',+st.dataset.v<=v));
   });
 }
+function boardRows(){
+  if(lbTab==='me'){
+    const ms=myScores();
+    return SITES.map((s,i)=>({s,i,v:ms[i]||0})).filter(x=>x.v>0)
+      .sort((a,b)=>b.v-a.v||((b.s.standout?1:0)-(a.s.standout?1:0))||a.i-b.i)
+      .map(x=>({...x,label:'★'.repeat(x.v)+'☆'.repeat(5-x.v)}));
+  }
+  const rows=SITES.map((s,i)=>{
+    const votes=Object.keys(poll.voters).map(n=>poll.voters[n][i]).filter(v=>v>0);
+    if(!votes.length)return null;
+    return {s,i,v:votes.reduce((a,b)=>a+b,0)/votes.length,nv:votes.length,
+      label:'★ '+(votes.reduce((a,b)=>a+b,0)/votes.length).toFixed(1)+' · '+votes.length+(votes.length===1?' vote':' votes')};
+  }).filter(Boolean).sort((a,b)=>b.v-a.v||b.nv-a.nv||((b.s.standout?1:0)-(a.s.standout?1:0))||a.i-b.i);
+  return rows;
+}
 function renderBoard(){
-  const rated=SITES.map((s,i)=>({s,i,v:scores[i]||0})).filter(x=>x.v>0)
-    .sort((a,b)=>b.v-a.v||((b.s.standout?1:0)-(a.s.standout?1:0))||a.i-b.i);
-  const lb=document.getElementById('leaderboard'), empty=document.getElementById('lbEmpty');
+  const rows=boardRows(), lb=document.getElementById('leaderboard'), empty=document.getElementById('lbEmpty');
   document.querySelectorAll('#grid .card').forEach(c=>c.classList.remove('isLeader'));
-  if(!rated.length){lb.innerHTML='';empty.style.display='';return;}
+  const names=Object.keys(poll.voters);
+  if(!rows.length){
+    lb.innerHTML='';
+    empty.style.display='';
+    empty.textContent = names.length
+      ? 'Tap the stars on any site below to score it out of five — the leader will be crowned here.'
+      : 'Add your name above, then tap the stars on any site to score it out of five.';
+    return;
+  }
   empty.style.display='none';
-  lb.innerHTML=rated.map((x,r)=>
+  lb.innerHTML=rows.map((x,r)=>
     `<div class="lbRow${r===0?' leader':''}"><span class="lbRank">${r===0?'👑':r+1}</span>`+
-    `<span class="lbName">${x.s.n}</span>`+
-    `<span class="lbStars">${'★'.repeat(x.v)}${'☆'.repeat(5-x.v)}</span>`+
+    `<span class="lbName">${x.s.n}</span><span class="lbStars">${x.label}</span>`+
     `<span class="lbLoc">${x.s.loc}</span></div>`).join('');
-  const lead=document.querySelector('#grid .card[data-i="'+rated[0].i+'"]');
+  const lead=document.querySelector('#grid .card[data-i="'+rows[0].i+'"]');
   if(lead)lead.classList.add('isLeader');
 }
+function renderVoters(){
+  const names=Object.keys(poll.voters), bar=document.getElementById('voterBar');
+  let h='<span class="vlabel">Scoring as:</span>';
+  h+=names.map(n=>`<button class="chip${n===poll.current?' on':''}" data-voter="${esc(n)}">${esc(n)}</button>`).join('');
+  h+='<button class="chip" id="addVoter" title="Add another person">+ Add person</button>';
+  bar.innerHTML=h;
+  bar.querySelectorAll('[data-voter]').forEach(b=>b.addEventListener('click',()=>{
+    poll.current=b.dataset.voter; savePoll(); renderVoters(); paintStars(); renderBoard(); syncTabs();
+  }));
+  document.getElementById('addVoter').addEventListener('click',askName);
+  const wb=document.getElementById('whoBanner');
+  if(!names.length){
+    wb.style.display='';
+    wb.innerHTML='👋 Who’s scoring? <input id="whoInput" placeholder="Your name — e.g. Ian" maxlength="24"> <button class="chip" id="whoGo">Start scoring</button>';
+    const go=()=>{const v=document.getElementById('whoInput').value.trim(); if(!v)return;
+      if(!poll.voters[v])poll.voters[v]={}; poll.current=v; savePoll();
+      wb.style.display='none'; renderVoters(); paintStars(); renderBoard(); syncTabs();};
+    document.getElementById('whoGo').addEventListener('click',go);
+    document.getElementById('whoInput').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  } else wb.style.display='none';
+}
+function askName(){
+  const v=prompt('Name for this voter (e.g. Hattie):');
+  if(!v)return; const name=v.trim().slice(0,24); if(!name)return;
+  if(!poll.voters[name])poll.voters[name]={};
+  poll.current=name; savePoll(); renderVoters(); paintStars(); renderBoard(); syncTabs();
+}
+function syncTabs(){
+  document.querySelectorAll('#lbtabs .chip').forEach(t=>t.classList.toggle('on',t.dataset.tab===lbTab));
+  const me=document.querySelector('#lbtabs [data-tab="me"]');
+  me.textContent = poll.current ? poll.current+'’s leaderboard' : 'My leaderboard';
+}
+document.querySelectorAll('#lbtabs .chip').forEach(t=>t.addEventListener('click',()=>{
+  lbTab=t.dataset.tab; syncTabs(); renderBoard();
+}));
 document.getElementById('grid').addEventListener('click',e=>{
   const st=e.target.closest('.star'); if(!st)return;
-  const i=st.parentElement.dataset.i, v=+st.dataset.v;
-  if(scores[i]===v){delete scores[i]}else{scores[i]=v}
-  try{localStorage.setItem(LS,JSON.stringify(scores))}catch(e){}
-  paintStars(); renderBoard();
+  if(!poll.current){flash('Add your name first (above), then score away.');return;}
+  const i=st.parentElement.dataset.i, v=+st.dataset.v, ms=myScores();
+  if(ms[i]===v){delete ms[i]}else{ms[i]=v}
+  savePoll(); paintStars(); renderBoard();
 });
 document.getElementById('resetBtn').addEventListener('click',()=>{
-  scores={}; try{localStorage.removeItem(LS)}catch(e){}
-  paintStars(); renderBoard();
+  if(!poll.current)return;
+  poll.voters[poll.current]={}; savePoll(); paintStars(); renderBoard();
+  flash('Scores cleared for '+poll.current+'.');
 });
 document.getElementById('shareBtn').addEventListener('click',()=>{
-  const enc=Object.keys(scores).map(k=>k+':'+scores[k]).join(',');
-  if(!enc){flash('Score a few sites first, then copy the link.');return;}
-  const url=location.href.split('#')[0]+'#s='+enc;
-  const done=()=>flash('Scores link copied — send it over and they can view or adopt your scores.');
+  if(!poll.current){flash('Add your name first (above).');return;}
+  const ms=myScores(), ks=Object.keys(ms);
+  if(!ks.length){flash('Score a few sites first, then copy the link.');return;}
+  const url=location.href.split('#')[0]+'#v='+encodeURIComponent(poll.current)+'&s='+ks.map(k=>k+':'+ms[k]).join(',');
+  const done=()=>flash('Scores link copied — send it over and they can save your scores alongside theirs.');
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>{prompt('Copy your scores link:',url)})}
   else{prompt('Copy your scores link:',url)}
 });
 function flash(msg){
   const b=document.getElementById('shareBanner');
   b.style.display=''; b.textContent=msg;
-  setTimeout(()=>{if(!b.dataset.keep)b.style.display='none'},4000);
+  setTimeout(()=>{if(!b.dataset.keep)b.style.display='none'},4500);
 }
 (function(){
-  const m=location.hash.match(/#s=([\d:,]+)/); if(!m||!m[1])return;
+  const m=location.hash.match(/#v=([^&]*)&s=([\d:,]+)/); if(!m)return;
+  let name=''; try{name=decodeURIComponent(m[1])}catch(e){}
   const incoming={};
-  m[1].split(',').forEach(p=>{const kv=p.split(':');if(kv[0]!==''&&kv[1])incoming[kv[0]]=+kv[1];});
-  if(!Object.keys(incoming).length)return;
+  (m[2]||'').split(',').forEach(p=>{const kv=p.split(':');if(kv[0]!==''&&kv[1])incoming[kv[0]]=+kv[1];});
+  if(!name||!Object.keys(incoming).length)return;
   const b=document.getElementById('shareBanner');
   b.dataset.keep='1'; b.style.display='';
-  b.innerHTML='Someone shared their site scores with you. <button class="chip" id="useShared">Use these scores</button> <button class="chip" id="dropShared">Dismiss</button>';
-  document.getElementById('useShared').onclick=()=>{scores=incoming;try{localStorage.setItem(LS,JSON.stringify(scores))}catch(e){}paintStars();renderBoard();delete b.dataset.keep;b.style.display='none';history.replaceState(null,'',location.pathname+location.search);};
+  b.innerHTML=esc(name)+' shared their site scores with you. <button class="chip" id="useShared">Save '+esc(name)+'’s scores</button> <button class="chip" id="dropShared">Dismiss</button>';
+  document.getElementById('useShared').onclick=()=>{
+    poll.voters[name]=incoming; poll.current=poll.current||name; savePoll();
+    delete b.dataset.keep; b.style.display='none';
+    history.replaceState(null,'',location.pathname+location.search);
+    renderVoters(); paintStars(); renderBoard(); syncTabs();
+    flash(name+'’s scores saved — flip to “Everyone combined” to see the joint table.');
+  };
   document.getElementById('dropShared').onclick=()=>{delete b.dataset.keep;b.style.display='none';history.replaceState(null,'',location.pathname+location.search);};
 })();
-paintStars(); renderBoard();
+renderVoters(); paintStars(); syncTabs(); renderBoard();
 </script>
 </body>
 </html>

@@ -62,6 +62,18 @@
   .go .nolink{font-size:13px;color:var(--faint)}
   footer{margin:56px 0 40px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);padding-top:22px}
   footer a{color:var(--sky)}
+  .starRow{font-size:13.5px;color:var(--muted);display:flex;align-items:center}
+  .starRow .star{cursor:pointer;font-size:22px;color:var(--faint);line-height:1;padding:0 1px;transition:color .1s}
+  .starRow .star.lit{color:var(--amber)}
+  .card.isLeader{border-color:var(--amber)}
+  #leaderboard{display:grid;gap:8px;margin:14px 0 4px}
+  .lbRow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+  .lbRow.leader{border-color:var(--amber);background:rgba(242,181,68,.07)}
+  .lbRank{font-size:18px;min-width:30px;text-align:center}
+  .lbName{font-weight:700}
+  .lbStars{color:var(--amber);letter-spacing:2px;white-space:nowrap}
+  .lbLoc{margin-left:auto;color:var(--faint);font-size:13px;text-align:right}
+  .pollActions{display:flex;gap:8px;margin:8px 0 4px;flex-wrap:wrap}
   @media(max-width:560px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -87,6 +99,16 @@
 </div></div>
 
 <div class="wrap">
+  <section id="poll">
+    <h2 class="section">🏆 Leaderboard <span class="n">scored by you</span></h2>
+    <p class="lede" id="lbEmpty">Tap the stars on any site below to score it out of five — your leader will be crowned here.</p>
+    <div id="leaderboard"></div>
+    <div class="pollActions">
+      <button class="chip" id="shareBtn">Copy my scores link</button>
+      <button class="chip" id="resetBtn">Reset scores</button>
+    </div>
+    <div id="shareBanner" class="caveat" style="display:none;margin-top:12px"></div>
+  </section>
   <h2 class="section">The shortlist <span class="n" id="secCount"></span></h2>
   <p class="lede">Standouts first, then the rest roughly by drive time from Harrogate. Use the filters above to narrow it down.</p>
   <div class="grid" id="grid"></div>
@@ -217,9 +239,9 @@ function tagList(s){
   if(s.near)t.push(['','< 1 hr']);
   return t.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join('');
 }
-function card(s){
+function card(s,idx){
   const facts=s.f.map(([k,v])=>`<li><b>${k}:</b> ${v}</li>`).join('');
-  return `<article class="card" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':''].join(' ')}">
+  return `<article class="card" data-i="${idx}" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':''].join(' ')}">
     <div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div>${s.standout?'<span class="badge">★ Standout</span>':''}</div>
     <p class="desc">${s.d}</p>
     <ul class="facts">${facts}</ul>
@@ -227,10 +249,11 @@ function card(s){
     <div class="facts"><li><b>Price:</b> ${s.p}</li></div>
     ${s.w?`<div class="warn">⚠️ ${s.w}</div>`:''}
     <div class="tags">${tagList(s)}</div>
+    <div class="starRow" data-i="${idx}"><span>Your score:&nbsp;</span>${[1,2,3,4,5].map(v=>`<span class="star" data-v="${v}">★</span>`).join('')}</div>
     <div class="go">${s.link?`<a href="${s.link[0]}" target="_blank" rel="noopener">${s.link[1]} →</a>`:'<span class="nolink">Find it on ukcampsite.co.uk / the club sites</span>'}</div>
   </article>`;
 }
-document.getElementById('grid').innerHTML=SITES.map(card).join('');
+document.getElementById('grid').innerHTML=SITES.map((s,i)=>card(s,i)).join('');
 document.getElementById('maybe').innerHTML=MAYBE.map(s=>
  `<article class="card"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div><span class="badge dim">Check first</span></div>
   <p class="desc">${s.d}</p><div class="warn">⚠️ ${s.w}</div></article>`).join('');
@@ -247,6 +270,68 @@ function apply(){
 }
 chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('on'));c.classList.add('on');apply();}));
 apply();
+
+/* ---- Poll: per-site star scores, leaderboard, shareable scores link ---- */
+const LS='wildskies_scores_v1';
+let scores={};
+try{scores=JSON.parse(localStorage.getItem(LS)||'{}')||{}}catch(e){scores={}}
+function paintStars(){
+  document.querySelectorAll('.starRow').forEach(row=>{
+    const i=row.dataset.i, v=scores[i]||0;
+    row.querySelectorAll('.star').forEach(st=>st.classList.toggle('lit',+st.dataset.v<=v));
+  });
+}
+function renderBoard(){
+  const rated=SITES.map((s,i)=>({s,i,v:scores[i]||0})).filter(x=>x.v>0)
+    .sort((a,b)=>b.v-a.v||((b.s.standout?1:0)-(a.s.standout?1:0))||a.i-b.i);
+  const lb=document.getElementById('leaderboard'), empty=document.getElementById('lbEmpty');
+  document.querySelectorAll('#grid .card').forEach(c=>c.classList.remove('isLeader'));
+  if(!rated.length){lb.innerHTML='';empty.style.display='';return;}
+  empty.style.display='none';
+  lb.innerHTML=rated.map((x,r)=>
+    `<div class="lbRow${r===0?' leader':''}"><span class="lbRank">${r===0?'👑':r+1}</span>`+
+    `<span class="lbName">${x.s.n}</span>`+
+    `<span class="lbStars">${'★'.repeat(x.v)}${'☆'.repeat(5-x.v)}</span>`+
+    `<span class="lbLoc">${x.s.loc}</span></div>`).join('');
+  const lead=document.querySelector('#grid .card[data-i="'+rated[0].i+'"]');
+  if(lead)lead.classList.add('isLeader');
+}
+document.getElementById('grid').addEventListener('click',e=>{
+  const st=e.target.closest('.star'); if(!st)return;
+  const i=st.parentElement.dataset.i, v=+st.dataset.v;
+  if(scores[i]===v){delete scores[i]}else{scores[i]=v}
+  try{localStorage.setItem(LS,JSON.stringify(scores))}catch(e){}
+  paintStars(); renderBoard();
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  scores={}; try{localStorage.removeItem(LS)}catch(e){}
+  paintStars(); renderBoard();
+});
+document.getElementById('shareBtn').addEventListener('click',()=>{
+  const enc=Object.keys(scores).map(k=>k+':'+scores[k]).join(',');
+  if(!enc){flash('Score a few sites first, then copy the link.');return;}
+  const url=location.href.split('#')[0]+'#s='+enc;
+  const done=()=>flash('Scores link copied — send it over and they can view or adopt your scores.');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>{prompt('Copy your scores link:',url)})}
+  else{prompt('Copy your scores link:',url)}
+});
+function flash(msg){
+  const b=document.getElementById('shareBanner');
+  b.style.display=''; b.textContent=msg;
+  setTimeout(()=>{if(!b.dataset.keep)b.style.display='none'},4000);
+}
+(function(){
+  const m=location.hash.match(/#s=([\d:,]+)/); if(!m||!m[1])return;
+  const incoming={};
+  m[1].split(',').forEach(p=>{const kv=p.split(':');if(kv[0]!==''&&kv[1])incoming[kv[0]]=+kv[1];});
+  if(!Object.keys(incoming).length)return;
+  const b=document.getElementById('shareBanner');
+  b.dataset.keep='1'; b.style.display='';
+  b.innerHTML='Someone shared their site scores with you. <button class="chip" id="useShared">Use these scores</button> <button class="chip" id="dropShared">Dismiss</button>';
+  document.getElementById('useShared').onclick=()=>{scores=incoming;try{localStorage.setItem(LS,JSON.stringify(scores))}catch(e){}paintStars();renderBoard();delete b.dataset.keep;b.style.display='none';history.replaceState(null,'',location.pathname+location.search);};
+  document.getElementById('dropShared').onclick=()=>{delete b.dataset.keep;b.style.display='none';history.replaceState(null,'',location.pathname+location.search);};
+})();
+paintStars(); renderBoard();
 </script>
 </body>
 </html>

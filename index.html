@@ -206,7 +206,7 @@
   <button class="chip" data-f="near">Under an hour</button>
   <button class="chip" data-f="motorhome">Motorhome-friendly</button>
   <button class="chip" data-f="campfire">Campfires</button>
-  <button class="chip" data-f="adults">Adults only</button>
+  <button class="chip" data-f="kids">Kids welcome</button>
   <button class="chip" id="sortBtn" title="Sort the shortlist by brief-fit score">⇅ Brief fit</button>
   <span class="count" id="count"></span>
 </div></div>
@@ -488,7 +488,7 @@ function scene(hue){
 function card(s,idx){
   const facts=s.f.map(([k,v])=>`<li><b>${k}:</b> ${v}</li>`).join('');
   const hue=205+((idx*47)%55);
-  return `<article class="card" data-i="${idx}" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':''].join(' ')}">`+
+  return `<article class="card" data-i="${idx}" data-tags="${[s.standout?'standout':'',s.dark?'dark':'',s.near?'near':'',s.motorhome?'motorhome':'',s.campfire?'campfire':'',s.adults?'adults':'kids'].join(' ')}">`+
     scene(hue)+
     `<div class="cbody"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div><div class="badges">${s.standout?'<span class="badge">★ Standout</span>':''}${scorePill(s)}</div></div>`+
     `<p class="desc">${s.d}</p>`+

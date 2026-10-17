@@ -193,7 +193,7 @@
       <div class="wordmark">Wild Skies</div>
       <div class="wordsub">rural campsites · campervan times</div>
       <p class="sub">Small, picturesque, quirky and peaceful sites with proper toilets &amp; showers, open <b>all year round</b>, within about two hours of Harrogate. The ones people rave about — under some of the darkest skies in England.</p>
-      <div class="stats"><span>24 sites</span><span>Dark-sky country</span><span>Max ~2 hrs</span></div>
+      <div class="stats"><span>19 sites</span><span>Dark-sky country</span><span>Max ~2 hrs</span></div>
       <div class="caveat">⚠️ All-year opening was confirmed from campsite listings in October 2026 — please double-check “open all year” with the site itself before booking, especially for a winter trip. Prices are indicative.</div>
     </div>
   </header>
@@ -344,6 +344,11 @@ const SITES=[
  f:[["Pitches","9 serviced hardstanding + 4 standard + 10 grass tent pitches; tents/caravans/motorhomes"],["Facilities","<span class='ok'>State-of-the-art amenity block: sauna, drying room, underfloor-heated showers</span>"]],
  r:"4.8 (219) Google · 10/10 Pitchup reviews — “spotlessly clean… LOVE the addition of baths!!”",p:"From £30/night for 2",w:"Open all year for tourers/hardstanding — grass tent pitches Easter–Oct only.",
  link:["https://www.herdinghillfarm.co.uk/","Visit Herding Hill Farm"]},
+{n:"The Quiet Site",hard:1,pub:"On site — The Quiet Bar, in a 1680 barn · open every day",loc:"Watermillock, Ullswater — ~1h55",dark:1,motorhome:1,campervan:1,
+ d:"Eco-famous terraced park above Ullswater: Hobbit Holes, a bar in a 1680 barn, wood-fired pizzas, and over 80% of its energy generated on site. King's Award winner for sustainable development — “find your quiet” is the proposition, and it is enforced.",
+ f:[["Pitches","83 pitches (55 touring, terraced, 60–120 m²); fully serviced options with 10A EHU, water + waste; tents, caravans, motorhomes, campervans; Hobbit Holes, pods and cabins too"],["Facilities","<span class='ok'>Toilets + hot showers: 14 individual washrooms; campers' kitchen; laundry/drying room; zero-waste shop; dog wash; EV charging; free Wi-Fi site-wide</span>"]],
+ r:"8/10 (232) ukcampsite · 8.8/10 eurocampings (ACSI-inspected) · open 01/01–31/12 confirmed",p:"From £25/night (electric metered — a fair-use allowance is included)",w:"No campfires or fire pits — raised BBQs only. Narrow country-lane access; take it steady with a big unit.",
+ link:["https://thequietsite.co.uk","Visit The Quiet Site"]},
 ];
 const MAYBE=[
 {n:"How Stean Gorge",loc:"Lofthouse, Nidderdale",d:"Gorge, caves, fire pits and café on site; reviewers confirm “plenty of clean toilets… always able to access a free hot shower”.",w:"All-year opening not verified — check howstean.co.uk."},
@@ -408,7 +413,10 @@ const SCORES={
  hates:["Weak WiFi, and calls for more showers at busy times — Pitchup.com","“Incredibly cramped… does not suit a larger mobile home” — reviewsummary.co.uk","Steep pathways — Pitchup.com"]},
 "Herding Hill Farm":{score:85,why:"Immaculate 5-star amenity block, dark-sky-friendly lighting and raved-about reviews — but a polished, larger glamping operation, not small or rustic.",
  loves:["“The whole site is spotless… showers and toilets couldn't have been cleaner and water was piping hot” — TripAdvisor (Jan 2026)","“Spacious, clean and warm!… stargazing kits, fire pits, and pizza on a Friday night” — TripAdvisor (Apr 2026)","“Extremely peaceful… northern lights can be seen on a clear night… 10/10” — TripAdvisor (May 2026)","4.8 Google (219); 4.8 TripAdvisor (835)"],
- hates:["“For a large touring van the pitches aren't massive… wine on site pretty expensive” — TripAdvisor","“Too basic for the price and too ott with the rules” — hot tub fixed at 38°C — TripAdvisor","“A little pricey… the road up is quite steep” — campsites.co.uk"]}
+ hates:["“For a large touring van the pitches aren't massive… wine on site pretty expensive” — TripAdvisor","“Too basic for the price and too ott with the rules” — hot tub fixed at 38°C — TripAdvisor","“A little pricey… the road up is quite steep” — campsites.co.uk"]},
+"The Quiet Site":{score:84,why:"Hotel-standard washrooms, a 1680 barn bar and genuine 365-day opening at an award-hoarding eco park — but 83 pitches with a pizza oven and games room is a boutique holiday park, not a small, isolated escape.",
+ loves:["“The toilet and shower facilities were great — probably the best I've seen on a campsite!” — Google","“The pub (which is amazing, 16th century building, open fire, they even make their own gin and beer)” — Google","“Extremely surprised just how reasonably everything was priced — drinks in the bar, pizzas and groceries” — Google","“Wonderful site with amazing views… staff are amazing and facilities are clean and modern” — Google"],
+ hates:["“Bombarded with warnings about noise… made to feel like we couldn't have fun after 8/9pm… a pretentious snobbery about it” — TripAdvisor (Apr 2025)","“The pitch is very small and they cram as many people into tiny spaces as possible” — TripAdvisor","“Pitches are uneven and very hard to get a peg into” — TripAdvisor; the neighbouring working farm “generates lots of noise” — Google"]}
 };
 function scorePill(s){
   const sc=SCORES[s.n];

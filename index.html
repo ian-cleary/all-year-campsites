@@ -81,6 +81,9 @@
   .lbName{font-weight:600;font-family:var(--serif);font-size:17px}
   .lbStars{color:var(--gold);letter-spacing:2px;white-space:nowrap}
   .lbLoc{margin-left:auto;color:var(--faint);font-size:13px;text-align:right}
+  .lbRow{cursor:pointer}
+  .lbExp{color:var(--faint);font-size:13px}
+  .lbDetail{margin:-2px 0 2px}
   .pollActions{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
   details.how{margin:10px 0 4px;color:var(--muted);font-size:14px;max-width:780px}
   details.how summary{cursor:pointer;color:var(--mist);font-weight:600}
@@ -269,114 +272,122 @@
 
 <script>
 const SITES=[
-{n:"Orcaber Farm",hard:1,pub:"Helwith Bridge Inn · ~2 min walk · 4.7★ (834)",loc:"Austwick, near Settle — ~1h15",standout:1,dark:1,near:1,motorhome:1,campervan:1,
+{n:"Orcaber Farm",co:"11am",hard:1,pub:"Helwith Bridge Inn · ~2 min walk · 4.7★ (834)",loc:"Austwick, near Settle — ~1h15",standout:1,dark:1,near:1,motorhome:1,campervan:1,
  d:"Working farm in the Yorkshire Dales on the owner’s own “open all year round” site. Reviewers shout about the night sky — the farm’s own site boasts “BEST NIGHT SKY VIEWS!”.",
  f:[["Pitches","10m × 15m electric pitches — a 7m motorhome fits fine"],["Facilities","<span class='ok'>Toilets + showers (50p)</span> confirmed"]],
  r:"10/10 (149) on ukcampsite · 98% recommend on campsites.co.uk",p:"From £14/night",w:"Grass tent pitches Mar–Sep only — all-year means hardstanding/pods. One peak-season overbooking complaint (Aug 2025).",
  link:["https://www.caravancampingyorkshiredales.co.uk","Visit Orcaber Farm"]},
-{n:"Haggs Bank Bunkhouse & Campsite",hard:1,pub:"Nent Hall Country House Hotel · ~19 min walk · 4.1★ (308)",loc:"Alston, North Pennines — ~1h45–2h",standout:1,dark:1,motorhome:1,campervan:1,campfire:1,
+{n:"Haggs Bank Bunkhouse & Campsite",co:"10am",hard:1,pub:"Nent Hall Country House Hotel · ~19 min walk · 4.1★ (308)",loc:"Alston, North Pennines — ~1h45–2h",standout:1,dark:1,motorhome:1,campervan:1,campfire:1,
  d:"Terraced pitches with endless views down the Nent valley plus woodland glades, in what reviewers call the last wilderness in England. Bonfires welcomed (the owner brings the wood), filtered spring water, wildflower meadow.",
  f:[["Pitches","Tents, 10 caravan + 10 motorhome pitches, electric, hardstanding for tourers"],["Facilities","<span class='ok'>“Toilets spotless, showers hot (and free)”</span> — Tripadvisor"]],
  r:"9/10 (16) ukcampsite · 4.8 (142) Google — “the antithesis of sites with pseudo-suburban numbered pitches”",p:"£8/adult, £4/child",
  link:["http://haggsbank.com/","Visit Haggs Bank"]},
-{n:"The Cud Life",hard:1,pub:"The Greyhound Inn · ~17 min walk · 4.2★ (40)",loc:"Harrogate — ~10–15 min",standout:1,near:1,motorhome:1,campervan:1,
+{n:"The Cud Life",co:"not stated — check with the site",hard:1,pub:"The Greyhound Inn · ~17 min walk · 4.2★ (40)",loc:"Harrogate — ~10–15 min",standout:1,near:1,motorhome:1,campervan:1,
  d:"Working farm on the edge of Harrogate with the HAY café on site. Sixteen pitches, properly quiet after 10:30pm — the closest proper escape on this list.",
  f:[["Pitches","16 pitches, grass + hardstanding; tents and tourers"],["Facilities","<span class='ok'>Unisex shower pods; “toilet block was warm, spotlessly clean”</span>"]],
  r:"10/10 (348) ukcampsite · 4.9 (145) Google",p:"Not listed — check site",w:"No fire pits.",
  link:["https://thecudlife.co.uk","Visit The Cud Life"]},
-{n:"Bleatarn Farm",hard:1,pub:"The Stag Inn · ~1 min walk · 4.5★ (241)",loc:"Crosby on Eden, Hadrian’s Wall country — ~1h45",standout:1,motorhome:1,campervan:1,
+{n:"Bleatarn Farm",co:"not stated — check with the site",hard:1,pub:"The Stag Inn · ~1 min walk · 4.5★ (241)",loc:"Crosby on Eden, Hadrian’s Wall country — ~1h45",standout:1,motorhome:1,campervan:1,
  d:"C&CC certificated site in Hadrian’s Wall country with views to the Lake District fells and the Pennines. Heated shower block, honesty box, properly peaceful.",
  f:[["Pitches","7 hardstanding pitches + camping field — 7m motorhome OK"],["Facilities","<span class='ok'>Heated WC/shower block</span>"]],
  r:"10/10 (182) ukcampsite",p:"£15/night with EHU (some reviewers quote £27 for motorhome — check)"},
-{n:"Oxen Close Farm",hard:1,pub:"The Wellington Inn · ~17 min walk · 4.6★ (1,016)",loc:"Nidderdale — ~15–20 min",standout:1,dark:1,near:1,motorhome:1,campervan:1,
+{n:"Oxen Close Farm",co:"not stated — check with the site",hard:1,pub:"The Wellington Inn · ~17 min walk · 4.6★ (1,016)",loc:"Nidderdale — ~15–20 min",standout:1,dark:1,near:1,motorhome:1,campervan:1,
  d:"C&CC certificated site in the Nidderdale AONB — inside the Nidderdale Dark Sky Reserve. Grass and hardstanding, tents to motorhomes.",
  f:[["Pitches","Tents + motorhomes + campervans"],["Facilities","<span class='ok'>Showers + flush toilets</span> (C&CC page)"]],
- r:"10/10 (12) ukcampsite",p:"£20 / 2 adults (+£5 EHU)",w:"C&CC members only (can join on site). STRICTLY NO DOGS."},
-{n:"Calder Farm",hard:1,pub:"Coach and Horses · ~16 min walk · 4.6★ (537) · serves food",loc:"Bolton-by-Bowland, Forest of Bowland — ~1h10",standout:1,motorhome:1,campervan:1,campfire:1,
+ r:"10/10 (12) ukcampsite",p:"£20 / 2 adults (+£5 EHU)",w:"C&CC members only (can join on site). STRICTLY NO DOGS.",
+link:["https://www.oxenclosefarm.co.uk/","Visit Oxen Close Farm"]},
+{n:"Calder Farm",co:"11:30am",hard:1,pub:"Coach and Horses · ~16 min walk · 4.6★ (537) · serves food",loc:"Bolton-by-Bowland, Forest of Bowland — ~1h10",standout:1,motorhome:1,campervan:1,campfire:1,
  d:"Working farm with Pendle Hill views; the owner’s site says “We are open all year round!”. Firepits for hire for the evening.",
  f:[["Pitches","Caravan / motorhome / tents"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
  r:"9/10 (106) ukcampsite",p:"£30 caravan/motorhome with EHU; tents £15–£25",w:"Firepits for hire — no open campfires.",
  link:["https://calderfarm.co.uk","Visit Calder Farm"]},
-{n:"Three Acres",hard:1,pub:"Queens Head Inn · ~14 min walk · 4.7★ (583)",loc:"Harrogate (Staupes Rd) — ~20 min",near:1,motorhome:1,campervan:1,campfire:1,adults:1,
+{n:"Three Acres",co:"not stated — check with the site",hard:1,pub:"Queens Head Inn · ~14 min walk · 4.7★ (583)",loc:"Harrogate (Staupes Rd) — ~20 min",near:1,motorhome:1,campervan:1,campfire:1,adults:1,
  d:"Quiet rural certificated site twenty minutes out; campfires allowed and adults only, so properly peaceful.",
  f:[["Pitches","15 pitches; tents, caravans, motorhomes"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
  r:"9/10 (63) ukcampsite",p:"Not listed — check site",w:"Adults only. C&CC certificated site."},
-{n:"Eshton Road",hard:1,pub:"The Masons Arms · ~2 min walk · 4.5★ (1,036)",loc:"Gargrave, near Skipton — ~40 min",near:1,motorhome:1,campervan:1,
+{n:"Eshton Road",co:"not stated — check with the site",hard:1,pub:"The Masons Arms · ~2 min walk · 4.5★ (1,036)",loc:"Gargrave, near Skipton — ~40 min",near:1,motorhome:1,campervan:1,
  d:"Canal-side site right on the Pennine Way, with a refurbished shower block (2023).",
  f:[["Pitches","18 pitches; tourers/motorhomes"],["Facilities","<span class='ok'>Toilets + showers</span>"]],
  r:"9/10 (72) ukcampsite",p:"Not listed — check site",w:"Tents limited to small 2-man tents for Pennine Way walkers."},
-{n:"Unthank Farm",hard:1,pub:"The Grasshobbler · ~1 min walk · 4.8★ (11) · serves food",loc:"Leyburn, Wensleydale — ~45–50 min",near:1,motorhome:1,campervan:1,
+{n:"Unthank Farm",co:"11am",hard:1,pub:"The Grasshobbler · ~1 min walk · 4.8★ (11) · serves food",loc:"Leyburn, Wensleydale — ~45–50 min",near:1,motorhome:1,campervan:1,
  d:"Working farm in Wensleydale with a new shower/toilet block and “Sunset Meadows” tent camping.",
  f:[["Pitches","Caravans / motorhomes / campervans — NO tents"],["Facilities","<span class='ok'>New shower/toilet block</span>"]],
- r:"9/10 (23) ukcampsite",p:"£25/night",w:"Units only — no tents. No washing-up area, wifi or campfires."},
-{n:"Lundholme Farm",hard:1,pub:"The Craven Heifer · ~3 min walk · 4.3★ (515)",loc:"Ingleton — ~1h",dark:1,near:1,motorhome:1,campervan:1,
+ r:"9/10 (23) ukcampsite",p:"£25/night",w:"Units only — no tents. No washing-up area, wifi or campfires.",
+link:["https://unthankfarm.innstyle.co.uk","Visit Unthank Farm"]},
+{n:"Lundholme Farm",co:"not stated — check with the site",hard:1,pub:"The Craven Heifer · ~3 min walk · 4.3★ (515)",loc:"Ingleton — ~1h",dark:1,near:1,motorhome:1,campervan:1,
  d:"250-acre working farm with Ingleborough views, inside the Yorkshire Dales Dark Sky Reserve.",
  f:[["Pitches","Tent / caravan / motorhome / campervan; 14 EHU hardstanding"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
- r:"10/10 (48) ukcampsite",p:"Not listed — check site",w:"No campfires."},
-{n:"Aysgarth Camping",hard:1,pub:"Aysgarth Falls Hotel & Restaurant · ~10 min walk · 4.5★ (1,171)",loc:"Wensleydale — ~1h",dark:1,near:1,motorhome:1,campervan:1,
+ r:"10/10 (48) ukcampsite",p:"Not listed — check site",w:"No campfires.",
+link:["https://www.lundholmefarm.co.uk","Visit Lundholme Farm"]},
+{n:"Aysgarth Camping",co:"11am",hard:1,pub:"Aysgarth Falls Hotel & Restaurant · ~10 min walk · 4.5★ (1,171)",loc:"Wensleydale — ~1h",dark:1,near:1,motorhome:1,campervan:1,
  d:"Owner’s site says “open all year round”. Wensleydale setting, dogs welcome, big 12×12m electric pitches.",
  f:[["Pitches","Motorhomes / campervans / caravans / walking tents"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
- r:"10/10 (12) ukcampsite",p:"Not listed — check site",w:"No large tents or groups."},
-{n:"Alanholme",hard:1,pub:"The Masons Arms · ~3 min walk · 4.7★ (278)",loc:"Long Marton, Eden Valley — ~1h20",motorhome:1,campervan:1,
+ r:"10/10 (12) ukcampsite",p:"Not listed — check site",w:"No large tents or groups.",
+link:["https://aysgarthcamping.co.uk/","Visit Aysgarth Camping"]},
+{n:"Alanholme",co:"not stated — check with the site",hard:1,pub:"The Masons Arms · ~3 min walk · 4.7★ (278)",loc:"Long Marton, Eden Valley — ~1h20",motorhome:1,campervan:1,
  d:"Eden Valley site with the pub two minutes’ walk away. Small, friendly, well-kept.",
  f:[["Pitches","Tent / caravan / motorhome"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
  r:"10/10 (22) ukcampsite · 5.0 (16) Google",p:"£20 tent/2 people; £25 caravan/motorhome incl EHU",w:"All-year opening not confirmed — verify directly. Pitch count disputed (5 vs 21).",
  link:["https://alanholme.co.uk","Visit Alanholme"]},
-{n:"Sykeside",hard:1,pub:"The Brotherswater Inn · ~20 min walk · 4.4★ (370) · serves food",loc:"Penrith, Dovedale Valley — ~2h",motorhome:1,campervan:1,campfire:1,
+{n:"Sykeside",co:"11am",hard:1,pub:"The Brotherswater Inn · ~20 min walk · 4.4★ (370) · serves food",loc:"Penrith, Dovedale Valley — ~2h",motorhome:1,campervan:1,campfire:1,
  d:"Fell views in the Dovedale Valley with the Brotherswater Inn on site and fire pits welcome. 90+ pitches, so not small — but the reviews are raves.",
  f:[["Pitches","Tents / tourers"],["Facilities","<span class='ok'>Toilets + showers</span>"]],
- r:"Rave reviews across the board",p:"£23.70–£43.60 / 2 people",w:"Big site (90+ pitches) — not the isolated feel of the others."},
-{n:"Bolbec Manor",hard:1,pub:"The Manor House Inn · ~1 min walk · 4.6★ (645)",loc:"Shotley Bridge, Northumberland — ~1h25",motorhome:1,campervan:1,
+ r:"Rave reviews across the board",p:"£23.70–£43.60 / 2 people",w:"Big site (90+ pitches) — not the isolated feel of the others.",
+link:["https://sykeside.co.uk/","Visit Sykeside"]},
+{n:"Bolbec Manor",co:"10am",hard:1,pub:"The Manor House Inn · ~1 min walk · 4.6★ (645)",loc:"Shotley Bridge, Northumberland — ~1h25",motorhome:1,campervan:1,
  d:"“What a beautiful quirky site” (Pitchup) — next to the Manor House Inn with a quiet woodland/valley feel.",
  f:[["Pitches","6m × 9.5m EHU pitches — fits a 7m motorhome"],["Facilities","<span class='ok'>Toilets + showers</span>"]],
  r:"Quirky favourite on Pitchup",p:"From £19 / 2 people",w:"Grass non-EHU pitches only to 31 Oct — winter ground tents ambiguous, check."},
-{n:"Castlerigg Farm",hard:1,pub:"Twa Dogs · ~27 min walk · 4.1★ (776)",loc:"Keswick — ~1h50",motorhome:1,campervan:1,
+{n:"Castlerigg Farm",co:"11:30am",hard:1,pub:"Twa Dogs · ~27 min walk · 4.1★ (776)",loc:"Keswick — ~1h50",motorhome:1,campervan:1,
  d:"Panoramic fell views a couple of miles from Keswick — one of the best-known views-from-your-pitch sites in the Lakes.",
  f:[["Pitches","Tents / caravans / motorhomes / campervans"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
  r:"9/10 (252) ukcampsite · 4.8 (150) Google",p:"Not listed — check site",w:"No campfires.",
  link:["https://castleriggfarm.com","Visit Castlerigg Farm"]},
-{n:"Grandie Caravan Park",hard:1,pub:"The Stag Inn · ~3 min walk · 4.5★ (399)",loc:"Dufton, near Appleby — ~1h35",motorhome:1,campervan:1,
+{n:"Grandie Caravan Park",co:"11am",hard:1,pub:"The Stag Inn · ~3 min walk · 4.5★ (399)",loc:"Dufton, near Appleby — ~1h35",motorhome:1,campervan:1,
  d:"Six pitches at the east end of Dufton village green with outstanding views over Dufton Ghyll wood, on the Pennine Way. Quirky Hobbit Huts for hire too. “Super quiet on a night time.”",
  f:[["Pitches","6 pitches; tents, caravans, motorhomes, small campervans; hardstanding (max ~8m); EHU"],["Facilities","<span class='ok'>Toilets + hot showers (free) plus £1/5-min rain showers</span>"]],
  r:"9/10 (26) ukcampsite · 4.7 (132) Birdeye — “the overhead showers are amazing”",p:"£25/night (cash only)",w:"All-year opening could not be confirmed — verify directly before booking.",
  link:["http://www.duftoncaravanpark.co.uk/","Visit Grandie"]},
-{n:"Kestrel Lodge",hard:1,pub:"The Sun Inn, Bassenthwaite · 15–20 min walk · serves food",loc:"Bassenthwaite — ~1h35",dark:1,campfire:1,campervan:1,
+{n:"Kestrel Lodge",co:"11am",hard:1,pub:"The Sun Inn, Bassenthwaite · 15–20 min walk · serves food",loc:"Bassenthwaite — ~1h35",dark:1,campfire:1,campervan:1,
  d:"In the foothills of Skiddaw above Bassenthwaite Lake, on the Cumbria Way. Campfires allowed, honesty shop, properly back-to-basics.",
  f:[["Pitches","Tents + small campervans ONLY"],["Facilities","<span class='ok'>Toilets + hot showers</span>"]],
  r:"10/10 (32) ukcampsite · 4.9 (11) Google",p:"Not listed — check site",w:"NO caravans or motorhomes.",
  link:["https://kestrellodgecampsite.co.uk","Visit Kestrel Lodge"]},
-{n:"Moss Side Farm",hard:1,pub:"None confirmed within a 30-min walk",loc:"Broughton-in-Furness — ~1h45",dark:1,motorhome:1,campervan:1,
+{n:"Moss Side Farm",co:"10:30am",hard:1,pub:"None confirmed within a 30-min walk",loc:"Broughton-in-Furness — ~1h45",dark:1,motorhome:1,campervan:1,
  d:"Stunning Lakeland hill farm with valley vistas; sheep, cows and chickens roaming about, plus rail cabins and yurts. “What a view to wake up to.”",
  f:[["Pitches","20 pitches; tents + campervans/motorhomes (non-electric grass)"],["Facilities","Toilets + hot showers — reviewers call them rustic/“funky”: “like showering in a cattle shed but wasn’t too bad”"]],
  r:"9/10 (23) ukcampsite · 93% recommend campsites.co.uk · 5.0 (9) Google — “back to basics… peaceful, tranquil and relaxing”",p:"Not listed — check site",
  link:["https://www.mosssidefarm.com/","Visit Moss Side Farm"]},
-{n:"Church House Inn & Campsite",hard:1,pub:"The Wilson Arms, Torver · ~25 min walk · serves food",loc:"Torver, Coniston — ~1h45",motorhome:1,campervan:1,
+{n:"Church House Inn & Campsite",co:"10am",hard:1,pub:"The Wilson Arms, Torver · ~25 min walk · serves food",loc:"Torver, Coniston — ~1h45",motorhome:1,campervan:1,
  d:"Ten-pitch pub site opposite the Wilson Arms; walkable to Coniston village and the lake, fell views all round.",
  f:[["Pitches","Tents, caravans, motorhomes, small campervans; EHU + hardstanding"],["Facilities","Toilets + hot showers — <span class='ok'>“spotless throughout our stay” (Aug 2026)</span>"]],
- r:"9/10 (15) ukcampsite",p:"Not listed — check site",w:"Pub now closed; all recent reviews are glamping pods — tent/motorhome camping offer unclear, check before booking."},
-{n:"Linskeldfield Farm",hard:1,pub:"The Pheasant Inn, Bassenthwaite · ~50 min walk · serves food",loc:"Isel, Cockermouth — ~1h50",motorhome:1,campervan:1,campfire:1,
+ r:"9/10 (15) ukcampsite",p:"Not listed — check site",w:"Pub now closed; all recent reviews are glamping pods — tent/motorhome camping offer unclear, check before booking.",
+link:["https://www.thechurchhouseinn.com/","Visit Church House Inn"]},
+{n:"Linskeldfield Farm",co:"10am",hard:1,pub:"The Pheasant Inn, Bassenthwaite · ~50 min walk · serves food",loc:"Isel, Cockermouth — ~1h50",motorhome:1,campervan:1,campfire:1,
  d:"Working farm in the Derwent Valley with virtually no road noise, panoramic Skiddaw views, alpacas, pygmy goats, emus, owls and a wildlife tarn. The toilet block has underfloor heating.",
  f:[["Pitches","5 hardstanding + tents; tents/caravans/motorhomes; EHU; campfires"],["Facilities","<span class='ok'>Beautiful purpose-built toilet block, underfloor heating</span>"]],
- r:"10/10 (36) ukcampsite",p:"£22/night with EHU",w:"C&CC members only. Grass tent pitches Easter–Sept only — all-year means hardstanding/pod. ⚠️ Nearest pub is ~50 min walk — outside the 30-min pub rule. "},
-{n:"Hadrian’s Wall Campsite",pub:"None within a 30-min walk",hard:1,pub:"Twice Brewed Inn · ~25 min walk · serves food",loc:"Melkridge, Haltwhistle — ~1h50",dark:1,motorhome:1,campervan:1,campfire:1,
+ r:"10/10 (36) ukcampsite",p:"£22/night with EHU",w:"C&CC members only. Grass tent pitches Easter–Sept only — all-year means hardstanding/pod. ⚠️ Nearest pub is ~50 min walk — outside the 30-min pub rule. ",
+link:["https://linskeldfield.co.uk","Visit Linskeldfield Farm"]},
+{n:"Hadrian’s Wall Campsite",co:"11:30am",pub:"None within a 30-min walk",hard:1,pub:"Twice Brewed Inn · ~25 min walk · serves food",loc:"Melkridge, Haltwhistle — ~1h50",dark:1,motorhome:1,campervan:1,campfire:1,
  d:"Small, secluded family-run site less than a mile from the most dramatic stretches of Hadrian’s Wall — “magnificent unspoilt landscapes” made for walks, Roman forts and stargazing. Travellers’ Choice 2023.",
  f:[["Pitches","40 pitches; tents, caravans, motorhomes, small campervans; EHU + hardstanding"],["Facilities","<span class='ok'>Toilets + hot showers (heated block); cook-house; laundry; motorhome point; shop on site</span>"]],
  r:"9/10 (253) ukcampsite · 4.7 (697) Google — Travellers' Choice 2023",p:"£20/night (reviewers)",
  link:["http://hadrianswallcampsite.co.uk/","Visit Hadrian’s Wall Campsite"]},
-{n:"Herding Hill Farm",hard:1,pub:"The Milecastle Inn · ~12 min walk · 4.6★ (921) · serves food",loc:"Haltwhistle, Northumberland — ~1h50",dark:1,motorhome:1,campervan:1,campfire:1,
+{n:"Herding Hill Farm",co:"12pm",hard:1,pub:"The Milecastle Inn · ~12 min walk · 4.6★ (921) · serves food",loc:"Haltwhistle, Northumberland — ~1h50",dark:1,motorhome:1,campervan:1,campfire:1,
  d:"The only 5-star site in Hadrian’s Wall country — Dark Sky Friendly, with alpacas, donkeys, a petting farm and pizzas delivered to your pitch.",
  f:[["Pitches","9 serviced hardstanding + 4 standard + 10 grass tent pitches; tents/caravans/motorhomes"],["Facilities","<span class='ok'>State-of-the-art amenity block: sauna, drying room, underfloor-heated showers</span>"]],
  r:"4.8 (219) Google · 10/10 Pitchup reviews — “spotlessly clean… LOVE the addition of baths!!”",p:"From £30/night for 2",w:"Open all year for tourers/hardstanding — grass tent pitches Easter–Oct only.",
  link:["https://www.herdinghillfarm.co.uk/","Visit Herding Hill Farm"]},
-{n:"Ellergill Raise",hard:1,pub:"The Royal Oak · ~40 min walk",loc:"Nethertown, Egremont — ~2h",motorhome:1,campervan:1,adults:1,
+{n:"Ellergill Raise",co:"12pm",hard:1,pub:"The Royal Oak · ~40 min walk",loc:"Nethertown, Egremont — ~2h",motorhome:1,campervan:1,adults:1,
  d:"Small adults-only site on the edge of the Lake District National Park, overlooking the fells and a mile from the beach. Great walking country.",
  f:[["Pitches","15 pitches; tents, caravans, motorhomes, small campervans; 5 hardstanding + grass; EHU"],["Facilities","<span class='ok'>Toilet + shower block (free)</span>"]],
  r:"9/10 (69) ukcampsite",p:"Not listed — check site",w:"Adults only. Dogs welcome. No campfires."},
-{n:"Grizedale Campsite (Bowkerstead Farm)",pub:"The Eagle's Head · 5 min walk · serves food",loc:"Satterthwaite — ~2h",dark:1,campfire:1,campervan:1,
+{n:"Grizedale Campsite (Bowkerstead Farm)",co:"12pm",pub:"The Eagle's Head · 5 min walk · serves food",loc:"Satterthwaite — ~2h",dark:1,campfire:1,campervan:1,
  d:"Working farm deep in Grizedale Forest — wooded, secluded pitches, a small river along the field, firewood delivered by quad bike. “Old fashioned camping… very un-commercial.”",
  f:[["Pitches","35 pitches; tents + small campervans only; no EHU"],["Facilities","<span class='ok'>Toilets + hot showers — “tiled and modern”, free, few but excellent</span>"]],
- r:"9/10 (103) ukcampsite",p:"Not listed — check site",w:"NO caravans or motorhomes."},
-{n:"The Quiet Site",hard:1,pub:"On site — The Quiet Bar, in a 1680 barn · open every day",loc:"Watermillock, Ullswater — ~1h55",dark:1,motorhome:1,campervan:1,
+ r:"9/10 (103) ukcampsite",p:"Not listed — check site",w:"NO caravans or motorhomes.",
+link:["https://www.grizedale-camping.co.uk/","Visit Grizedale Campsite"]},
+{n:"The Quiet Site",co:"11am",hard:1,pub:"On site — The Quiet Bar, in a 1680 barn · open every day",loc:"Watermillock, Ullswater — ~1h55",dark:1,motorhome:1,campervan:1,
  d:"Eco-famous terraced park above Ullswater: Hobbit Holes, a bar in a 1680 barn, wood-fired pizzas, and over 80% of its energy generated on site. King's Award winner for sustainable development — “find your quiet” is the proposition, and it is enforced.",
  f:[["Pitches","83 pitches (55 touring, terraced, 60–120 m²); fully serviced options with 10A EHU, water + waste; tents, caravans, motorhomes, campervans; Hobbit Holes, pods and cabins too"],["Facilities","<span class='ok'>Toilets + hot showers: 14 individual washrooms; campers' kitchen; laundry/drying room; zero-waste shop; dog wash; EV charging; free Wi-Fi site-wide</span>"]],
  r:"8/10 (232) ukcampsite · 8.8/10 eurocampings (ACSI-inspected) · open 01/01–31/12 confirmed",p:"From £25/night (electric metered — a fair-use allowance is included)",w:"No campfires or fire pits — raised BBQs only. Narrow country-lane access; take it steady with a big unit.",
@@ -512,6 +523,7 @@ function card(s,idx){
     `<div class="cbody"><div class="top"><div><h3>${s.n}</h3><div class="loc">${s.loc}</div></div><div class="badges">${s.standout?'<span class="badge">★ Standout</span>':''}${scorePill(s)}</div></div>`+
     `<p class="desc">${s.d}</p>`+
     `<ul class="facts">${facts}`+
+    `<li><b>Checkout:</b> ${s.co}</li>`+
     `<li><b>Nearest pub:</b> ${s.pub||"None confirmed within a 30-min walk"}</li></ul>`+
     `<div class="rev">${s.r}</div>`+
     loveHate(s)+
@@ -642,12 +654,28 @@ function renderBoard(){
   }
   empty.style.display='none';
   lb.innerHTML=rows.map((x,r)=>
-    `<div class="lbRow${r===0?' leader':''}"><span class="lbRank">${r===0?'👑':r+1}</span>`+
+    `<div class="lbRow${r===0?' leader':''}" data-i="${x.i}"><span class="lbRank">${r===0?'👑':r+1}</span>`+
     `<span class="lbName">${x.s.n}</span><span class="lbStars">${x.label}</span>`+
-    `<span class="lbLoc">${x.s.loc}</span></div>`).join('');
+    `<span class="lbLoc">${x.s.loc}</span><span class="lbExp">▸</span></div>`).join('');
   const lead=document.querySelector('#grid .card[data-i="'+rows[0].i+'"]');
   if(lead)lead.classList.add('isLeader');
 }
+document.getElementById('leaderboard').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const row=e.target.closest('.lbRow'); if(!row)return;
+  const i=+row.dataset.i;
+  const open=row.nextElementSibling;
+  const wasOpen=open&&open.classList.contains('lbDetail');
+  document.querySelectorAll('#leaderboard .lbDetail').forEach(d=>d.remove());
+  document.querySelectorAll('#leaderboard .lbExp').forEach(x=>x.textContent='\u25b8');
+  if(wasOpen)return;
+  const d=document.createElement('div');
+  d.className='lbDetail';
+  d.innerHTML=card(SITES[i],i);
+  row.after(d);
+  row.querySelector('.lbExp').textContent='\u25be';
+  paintStars();
+});
 function renderVoters(){
   const names=Object.keys(poll.voters), bar=document.getElementById('voterBar');
   let h='<span class="vlabel">Scoring as:</span>';
